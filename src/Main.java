@@ -3,8 +3,11 @@
 public class Main {
     public static void main(String[] args) {
 
-        int hunger = 0;
-        int fatigue = 0;
+        Person juca = new Person("Juca");
+
+        while (true){
+
+        }
 
 
     }
