@@ -7,9 +7,15 @@ public class Person {
     private int fatigue;
     private String name;
     private String currentState;
+    private State working;
+    private State eating;
+    private State sleeping;
 
     public Person(String newName){
         this.name = newName;
+        this.working = new Working();
+        this.eating = new Eating();
+        this.sleeping = new Sleeping();
     }
 
     public int getFatigue() {
@@ -44,10 +50,43 @@ public class Person {
         this.currentState = currentState;
     }
 
-    public void sleep(){
-        System.out.println("Bateu um sono...");
-        currentState = "Sleeping";
-        fatigue -= 10;
-        hunger += 1;
+    public void doAction(){
+        System.out.printf("\n%s\nFome: %d | Cansaço: %d\n", name, hunger, fatigue);
+        if(fatigue > 50) {
+            if(fatigue > 0) {
+                if (currentState != "Sleeping") {
+                    sleeping.enter();
+                    currentState = "Sleeping";
+                }
+                else
+                    sleeping.execute(this);
+            }
+            else{
+                fatigue = 0;
+                sleeping.leave();
+            }
+
+        }
+        else if(hunger > 10) {
+            if(hunger > 0) {
+                if (currentState != "Eating") {
+                    eating.enter();
+                    currentState = "Eating";
+                }
+                else
+                    eating.execute(this);
+            }
+            else{
+                hunger = 0;
+                eating.leave();
+            }
+        }
+        else{
+            if(currentState != "Working") {
+                working.enter();
+                currentState = "Working";
+            }
+            working.execute(this);
+        }
     }
 }
