@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
+package VersionStates;
 
 public class Person {
     private int hunger;
@@ -54,9 +52,9 @@ public class Person {
         System.out.printf("\n%s\nFome: %d | Cansaço: %d\n", name, hunger, fatigue);
         if(fatigue > 50) {
             if(fatigue > 0) {
-                if (currentState != "Sleeping") {
+                if (currentState != "VersionStates.Sleeping") {
                     sleeping.enter();
-                    currentState = "Sleeping";
+                    currentState = "VersionStates.Sleeping";
                 }
                 else
                     sleeping.execute(this);
@@ -69,9 +67,9 @@ public class Person {
         }
         else if(hunger > 10) {
             if(hunger > 0) {
-                if (currentState != "Eating") {
+                if (currentState != "VersionStates.Eating") {
                     eating.enter();
-                    currentState = "Eating";
+                    currentState = "VersionStates.Eating";
                 }
                 else
                     eating.execute(this);
@@ -82,9 +80,9 @@ public class Person {
             }
         }
         else{
-            if(currentState != "Working") {
+            if(currentState != "VersionStates.Working") {
                 working.enter();
-                currentState = "Working";
+                currentState = "VersionStates.Working";
             }
             working.execute(this);
         }

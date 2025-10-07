@@ -1,4 +1,6 @@
-public class Eating implements State{
+package VersionStates;
+
+public class Eating implements State {
 
     @Override
     public void enter() {
